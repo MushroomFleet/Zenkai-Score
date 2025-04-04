@@ -17,13 +17,11 @@ pip install -r requirements.txt
 echo.
 
 echo Installing Zenkai-Score package...
-cd ..
-pip install -e zenkai_score
-cd zenkai_score
+pip install -e .
 echo.
 
 echo Running first-time setup to download model weights...
-python -m zenkai_score --setup
+python -m zenkai_score.setup_utils
 echo.
 
 echo ===================================

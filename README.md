@@ -20,13 +20,13 @@ Zenkai-Score is a tool that analyzes and rates images based on their aesthetic q
 
 1. Clone the repository:
    ```
-   git clone https://github.com/yourusername/zenkai-score.git
-   cd zenkai-score
+   git clone https://github.com/MushroomFleet/Zenkai-Score.git
+   cd Zenkai-Score
    ```
 
 2. Run the included installer batch file:
    ```
-   zenkai_score\install.bat
+   install.bat
    ```
    This will:
    - Create a Python virtual environment
@@ -36,7 +36,7 @@ Zenkai-Score is a tool that analyzes and rates images based on their aesthetic q
 
 3. Use the provided batch file to run Zenkai-Score:
    ```
-   zenkai_score\Zenkai-Score.bat path\to\images
+   Zenkai-Score.bat path\to\images
    ```
 
 ### Manual Installation
@@ -44,14 +44,14 @@ Zenkai-Score is a tool that analyzes and rates images based on their aesthetic q
 ```bash
 # Clone the repository
 git clone https://github.com/yourusername/zenkai-score.git
-cd zenkai-score
+cd Zenkai-Score
 
 # Create a virtual environment (optional but recommended)
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 
 # Install dependencies
-pip install -r zenkai_score/requirements.txt
+pip install -r requirements.txt
 
 # Install the package
 pip install -e zenkai_score
@@ -96,7 +96,7 @@ The package includes a test script and sample image to verify your installation:
 
 ```bash
 # From the zenkai-score directory
-python zenkai_score/test.py
+python test.py
 ```
 
 This will use the included test_cat.jpg image to verify that the model loads correctly and can score images.
@@ -155,7 +155,7 @@ If you encounter CUDA errors:
 ### Import Errors
 
 If you get import errors:
-- Make sure you've installed all dependencies: `pip install -r zenkai_score/requirements.txt`
+- Make sure you've installed all dependencies: `pip install -r requirements.txt`
 - Make sure you've installed the package: `pip install -e zenkai_score`
 
 ## For More Information

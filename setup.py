@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="zenkai-score",
+    name="zenkai_score",
     version="2.0.0",
     description="Image aesthetic scoring system based on LAION model",
     author="Zenkai Score Team",

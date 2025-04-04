@@ -6,13 +6,13 @@ This quick start guide will help you get Zenkai-Score up and running in minutes.
 
 1. Clone and enter the repository:
    ```
-   git clone https://github.com/yourusername/zenkai-score.git
-   cd zenkai-score
+   git clone https://github.com/MushroomFleet/Zenkai-Score.git
+   cd Zenkai-Score
    ```
 
 2. Run the installer batch file:
    ```
-   zenkai_score\install.bat
+   install.bat
    ```
    This will:
    - Create a Python virtual environment
@@ -21,15 +21,15 @@ This quick start guide will help you get Zenkai-Score up and running in minutes.
 
 3. Run Zenkai-Score:
    ```
-   zenkai_score\Zenkai-Score.bat path\to\images
+   Zenkai-Score.bat path\to\images
    ```
 
 ## Manual Installation
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/zenkai-score.git
-   cd zenkai-score
+   git clone https://github.com/MushroomFleet/Zenkai-Score.git
+   cd Zenkai-Score
    ```
 
 2. Create a Python virtual environment (recommended):
@@ -40,7 +40,7 @@ This quick start guide will help you get Zenkai-Score up and running in minutes.
 
 3. Install the required dependencies:
    ```bash
-   pip install -r zenkai_score/requirements.txt
+   pip install -r requirements.txt
    ```
 
 4. Install the Zenkai-Score package:
@@ -82,7 +82,7 @@ python -m zenkai_score path/to/images/ --recursive --output results.csv
 
 To test if Zenkai-Score is working correctly, run:
 ```bash
-python zenkai_score/test.py
+python test.py
 ```
 
 This will attempt to score the included test image and report the result.
