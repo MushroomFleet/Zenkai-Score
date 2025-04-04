@@ -9,7 +9,7 @@ call venv\Scripts\activate
 echo.
 
 echo Running Zenkai-Score...
-python -m zenkai_score %*
+python -m zenkai_score.cli %*
 echo.
 
 echo ===================================
