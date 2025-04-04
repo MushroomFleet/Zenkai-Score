@@ -4,37 +4,51 @@ This quick start guide will help you get Zenkai-Score up and running in minutes.
 
 ## Windows Installation (Easiest)
 
-1. Run the installer batch file:
+1. Clone and enter the repository:
    ```
-   install.bat
+   git clone https://github.com/yourusername/zenkai-score.git
+   cd zenkai-score
    ```
 
-2. Wait for the installation to complete and model weights to download.
+2. Run the installer batch file:
+   ```
+   zenkai_score\install.bat
+   ```
+   This will:
+   - Create a Python virtual environment
+   - Install all dependencies
+   - Download required model weights
 
 3. Run Zenkai-Score:
    ```
-   Zenkai-Score.bat path/to/images
+   zenkai_score\Zenkai-Score.bat path\to\images
    ```
 
 ## Manual Installation
 
-1. Create a Python virtual environment (recommended):
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/zenkai-score.git
+   cd zenkai-score
+   ```
+
+2. Create a Python virtual environment (recommended):
    ```bash
    python -m venv venv
    source venv/bin/activate   # On Windows: venv\Scripts\activate
    ```
 
-2. Install the required dependencies:
+3. Install the required dependencies:
    ```bash
-   pip install -r requirements.txt
+   pip install -r zenkai_score/requirements.txt
    ```
 
-3. Install the Zenkai-Score package:
+4. Install the Zenkai-Score package:
    ```bash
-   pip install -e .
+   pip install -e zenkai_score
    ```
 
-4. Run setup to download the model weights:
+5. Run setup to download model weights:
    ```bash
    python -m zenkai_score --setup
    ```
@@ -68,7 +82,13 @@ python -m zenkai_score path/to/images/ --recursive --output results.csv
 
 To test if Zenkai-Score is working correctly, run:
 ```bash
-python test.py
+python zenkai_score/test.py
 ```
 
 This will attempt to score the included test image and report the result.
+
+## Where Model Weights Are Stored
+
+Model weights are downloaded to:
+```
+~/.cache/emb_reader/sa_0_4_vit_l_14_linear.pth

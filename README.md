@@ -20,31 +20,41 @@ Zenkai-Score is a tool that analyzes and rates images based on their aesthetic q
 
 1. Clone the repository:
    ```
-   git clone https://github.com/your-username/zenkai-score.git
+   git clone https://github.com/yourusername/zenkai-score.git
+   cd zenkai-score
    ```
 
 2. Run the included installer batch file:
    ```
-   cd zenkai-score/zenkai_score
-   install.bat
+   zenkai_score\install.bat
    ```
    This will:
    - Create a Python virtual environment
    - Install all dependencies
    - Download required model weights
+   - Set up the package for use
 
 3. Use the provided batch file to run Zenkai-Score:
    ```
-   Zenkai-Score.bat path/to/images
+   zenkai_score\Zenkai-Score.bat path\to\images
    ```
 
 ### Manual Installation
 
 ```bash
-# Install from source
-git clone https://github.com/your-username/zenkai-score.git
+# Clone the repository
+git clone https://github.com/yourusername/zenkai-score.git
 cd zenkai-score
-pip install -e .
+
+# Create a virtual environment (optional but recommended)
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+# Install dependencies
+pip install -r zenkai_score/requirements.txt
+
+# Install the package
+pip install -e zenkai_score
 
 # Run setup to download model weights
 python -m zenkai_score --setup
@@ -80,6 +90,17 @@ python -m zenkai_score path/to/images/ --output scores.csv
 python -m zenkai_score path/to/images/ --device cpu
 ```
 
+## Testing the Installation
+
+The package includes a test script and sample image to verify your installation:
+
+```bash
+# From the zenkai-score directory
+python zenkai_score/test.py
+```
+
+This will use the included test_cat.jpg image to verify that the model loads correctly and can score images.
+
 ## Python API
 
 ```python
@@ -109,3 +130,34 @@ Zenkai-Score rates images on a scale from 1.0 to 10.0:
 - **8.5-10.0**: Exceptional aesthetic quality
 
 The scoring is based on the LAION aesthetic predictor model, which was trained on millions of human aesthetic preference ratings.
+
+## How It Works
+
+1. Images are processed through OpenAI's CLIP ViT-L-14 model to extract visual features
+2. These features are passed through a linear model trained by LAION to predict aesthetic quality
+3. The raw score is normalized to a 1-10 scale for intuitive interpretation
+
+## Troubleshooting
+
+### Model Download Issues
+
+If the model fails to download:
+- Check your internet connection
+- The model weights are stored in `~/.cache/emb_reader/sa_0_4_vit_l_14_linear.pth`
+- You can force re-download with `python -m zenkai_score --setup --force`
+
+### CUDA/GPU Issues
+
+If you encounter CUDA errors:
+- Try running with `--device cpu` to use CPU instead
+- Make sure your PyTorch installation supports your GPU
+
+### Import Errors
+
+If you get import errors:
+- Make sure you've installed all dependencies: `pip install -r zenkai_score/requirements.txt`
+- Make sure you've installed the package: `pip install -e zenkai_score`
+
+## For More Information
+
+See the included QUICKSTART.md for a condensed guide to get started quickly.
