@@ -1,208 +1,111 @@
-# ✨🎨 Zenkai-Score: AI-Powered Aesthetic Image Scoring 🎨✨
+# Zenkai-Score v2.0
 
-## 🚀🔥 What is Zenkai-Score? 🔥🚀
+A streamlined image aesthetic scoring system based on LAION's aesthetic model.
 
-Zenkai-Score is a **blazingly fast** 🏎️💨 and **ridiculously accurate** 🎯 tool for scoring the aesthetic quality of your images! Using state-of-the-art AI models, Zenkai-Score analyzes your precious pixels and assigns them a score from 1-10 based on their visual awesomeness! 🧠👁️✨
+## Overview
 
-![Zen Aesthetic](https://api.placeholder/600/300)
+Zenkai-Score is a tool that analyzes and rates images based on their aesthetic qualities. It uses a machine learning model built on OpenCLIP embeddings and the LAION aesthetic predictor to assign scores from 1 to 10 to each image.
 
-### 🌟 Key Features 🌟
+## Features
 
-- 🖼️ Score images on a 1-10 aesthetic scale with AI precision!
-- 📁 Process entire directories of images with a single command!
-- 🔍 Recursively scan folders to find ALL your beautiful photos!
-- 📊 Generate CSV reports for easy sorting and filtering!
-- 🧠 Powered by LAION Aesthetic Predictor V2+ with OpenCLIP!
-- 🚄 Optimized batch processing for MAXIMUM SPEED! 🚄
-- 💻 Simple command-line interface for both novices and power users!
+- Score individual images or entire directories
+- Recursive directory scanning
+- CSV report generation
+- Support for various image formats (JPG, PNG, BMP, TIFF, WebP)
+- GPU acceleration (when available)
 
-## 💾 Installation 💾
+## Installation
 
-### 🪄 Windows Magic Installation 🪄
+### Windows (Easiest)
 
-Simply run the included `install.bat` file and BOOM! 💥 You're ready to go!
+1. Clone the repository:
+   ```
+   git clone https://github.com/your-username/zenkai-score.git
+   ```
 
-```batch
-install.bat
-```
+2. Run the included installer batch file:
+   ```
+   cd zenkai-score/zenkai_score
+   install.bat
+   ```
+   This will:
+   - Create a Python virtual environment
+   - Install all dependencies
+   - Download required model weights
 
-This magical script will:
-1. 🏗️ Create a fresh Python virtual environment
-2. 📦 Install all required dependencies 
-3. 📥 Download the necessary model weights
-4. 🎉 Set everything up for INSTANT GRATIFICATION! 🎉
+3. Use the provided batch file to run Zenkai-Score:
+   ```
+   Zenkai-Score.bat path/to/images
+   ```
 
-### 🐧 Manual Installation (Linux/Mac/Rebellious Windows Users) 🐧
+### Manual Installation
 
 ```bash
-# Create a virtual environment (because mixing dependencies is for CHUMPS! 🙅‍♂️)
-python -m venv venv
+# Install from source
+git clone https://github.com/your-username/zenkai-score.git
+cd zenkai-score
+pip install -e .
 
-# Activate the virtual environment (UNLIMITED POWER! ⚡)
-# On Linux/Mac:
-source venv/bin/activate
-# On Windows:
-venv\Scripts\activate
-
-# Install dependencies (the DIGITAL NUTRIENTS your program needs! 🍲)
-pip install -r requirements.txt
-
-# Run first-time setup (MODEL DOWNLOADING TIME! 📥⏱️)
+# Run setup to download model weights
 python -m zenkai_score --setup
 ```
 
-## 🎮 Usage 🎮
+## Requirements
 
-### 🖱️ Windows One-Click Launcher 🖱️
+- Python 3.7+
+- PyTorch 1.7+
+- open-clip-torch 2.0+
+- PIL/Pillow 7.0+
+- tqdm 4.45+
 
-Run `Zenkai-Score.bat` followed by your desired options:
-
-```batch
-Zenkai-Score.bat C:\path\to\your\amazing\images --recursive
-```
-
-### 🐧 Command Line Usage (Any OS) 🐧
+## Usage
 
 ```bash
-# Activate the virtual environment (ENHANCE YOUR PYTHON! 💪)
-# On Linux/Mac:
-source venv/bin/activate
-# On Windows:
-venv\Scripts\activate
+# Run first-time setup (downloads model weights)
+python -m zenkai_score --setup
 
-# Run Zenkai-Score with your chosen options (GO! GO! GO! 🚀)
-python -m zenkai_score /path/to/your/images --recursive
+# Score a single image
+python -m zenkai_score path/to/image.jpg
+
+# Score all images in a directory
+python -m zenkai_score path/to/images/
+
+# Score all images in a directory and its subdirectories
+python -m zenkai_score path/to/images/ --recursive
+
+# Specify output file
+python -m zenkai_score path/to/images/ --output scores.csv
+
+# Specify device (CPU or CUDA)
+python -m zenkai_score path/to/images/ --device cpu
 ```
 
-### 📋 Command Options 📋
-
-```
-python -m zenkai_score [PATH] [OPTIONS]
-
-Arguments:
-  PATH                  Directory containing images to score (REQUIRED! 📁)
-
-Options:
-  --recursive, -r       Scan subdirectories recursively (DEEPER LEVELS! 🕳️)
-  --output, -o          Specify output CSV file path (SAVE ANYWHERE! 💾)
-  --model, -m           Choose aesthetic model (BRAIN SELECTION! 🧠)
-                        Options: laion_aesthetic_vit_l_14 (default), 
-                                laion_aesthetic_vit_h_14, 
-                                laion_aesthetic_vit_b_16
-  --batch-size, -b      Set processing batch size (SPEED VS MEMORY! ⚖️)
-  --device, -d          Select processing device (CPU/CUDA) (HARDWARE CHOICE! 🖥️)
-  --setup               Run first-time setup (MODEL DOWNLOADING! 📥)
-```
-
-### 🔥 Examples 🔥
-
-Score a single directory of vacation photos:
-```bash
-python -m zenkai_score C:\Users\YourName\Pictures\Vacation2023
-```
-
-Score your ENTIRE photo collection (recursively):
-```bash
-python -m zenkai_score C:\Users\YourName\Pictures -r
-```
-
-Use the HIGHEST QUALITY model and save results to a specific location:
-```bash
-python -m zenkai_score C:\Photos -m laion_aesthetic_vit_h_14 -o vacation_scores.csv
-```
-
-Process smaller batches on a memory-constrained system:
-```bash
-python -m zenkai_score C:\huge_image_collection -b 4
-```
-
-## 📈 Understanding Your Results 📈
-
-Zenkai-Score outputs a CSV file with image paths and their aesthetic scores:
-
-| Image Path | Aesthetic Score |
-|------------|-----------------|
-| /path/to/amazing_sunset.jpg | 8.74 |
-| /path/to/blurry_cat.jpg | 3.21 |
-| /path/to/perfect_portrait.jpg | 9.56 |
-
-Score interpretation:
-- 🙈 **1.0-3.0**: Aesthetically challenged (we can't all be winners!)
-- 😐 **3.1-5.0**: Meh... could be better (room for improvement!)
-- 😊 **5.1-7.0**: Pretty good! (solid work!)
-- 😍 **7.1-9.0**: Excellent! (share these on social media!)
-- 🤯 **9.1-10.0**: MIND-BLOWING AESTHETIC PERFECTION! (submit to contests immediately!)
-
-## 🐍 Python API Usage 🐍
-
-Want to integrate Zenkai-Score into your Python project? It's RIDICULOUSLY EASY! 🎯
+## Python API
 
 ```python
-from zenkai_score.core import ZenkaiScore
+from zenkai_score import ZenkaiScore
 
-# Initialize the aesthetic scoring engine (POWER UP! 💪)
-scorer = ZenkaiScore()
+# Create scorer
+scorer = ZenkaiScore(device='cuda')  # or 'cpu'
 
-# Score a single image (JUDGE THAT JPEG! 👨‍⚖️)
+# Score a single image
 score = scorer.score_image("path/to/image.jpg")
-print(f"This image scores: {score:.2f}/10")
+print(f"Image score: {score}")
 
-# Process an entire directory (BATCH ATTACK! 📊)
-results = scorer.scan_directory("path/to/directory", recursive=True)
-
-# Find your TOP 5 images (THE ELITE SQUAD! 🏆)
-sorted_results = sorted(results, key=lambda x: x[1], reverse=True)
-for path, score in sorted_results[:5]:
-    print(f"{path}: {score:.2f}")
+# Score a directory of images
+results = scorer.scan_directory("path/to/images/", recursive=True)
+for path, score in results:
+    print(f"{path}: {score}")
 ```
 
-## 🔧 Troubleshooting 🔧
+## Understanding Scores
 
-### ❓ Common Issues ❓
+Zenkai-Score rates images on a scale from 1.0 to 10.0:
 
-- 😵 **Error loading model weights?** 
-  - Run `python -m zenkai_score --setup` to download them!
-  - Check your internet connection! 📶
-  - Make sure you have enough disk space! 💽
+- **1.0-3.0**: Low aesthetic quality
+- **3.0-5.0**: Below average
+- **5.0-7.0**: Average aesthetic quality
+- **7.0-8.5**: Good aesthetic quality
+- **8.5-10.0**: Exceptional aesthetic quality
 
-- 🐢 **Processing too slow?** 
-  - Try using a smaller model with `-m laion_aesthetic_vit_b_16` 🏎️
-  - Increase batch size with `-b 32` (if you have the RAM!) 🐏
-  - Make sure you're using a GPU if available with `-d cuda` ⚡
-
-- 🧠 **Out of memory?** 
-  - Reduce batch size with `-b 4` 📉
-  - Use a smaller model variant 🤏
-  - Close Chrome with its 500 open tabs! 🙄
-
-- 📂 **Can't find images?** 
-  - Double-check your path! 🔍
-  - Try using `--recursive` to search subdirectories! 🕳️
-  - Make sure your files have supported extensions (.jpg, .png, etc) 📑
-
-## 🔮 Future Enhancements 🔮
-
-We've barely scratched the surface of what Zenkai-Score could become! 🚀
-
-- 📊 Interactive dashboard with score visualizations! 
-- 🖼️ HTML gallery generation sorted by aesthetic score!
-- 🤖 Custom model training for YOUR specific aesthetic preferences!
-- 🔗 Integration with photo management software!
-- 📱 Mobile app for on-the-go aesthetic scoring!
-- 🌈 Style-specific scoring (landscapes, portraits, architecture, etc)!
-- 🔍 Similar image finding based on aesthetic embeddings!
-
-## 💖 Acknowledgements 💖
-
-Zenkai-Score wouldn't exist without these AMAZING projects:
-
-- 🧠 LAION for their groundbreaking aesthetic predictors
-- 🖼️ OpenCLIP for powerful visual embeddings
-- 🔬 The computational aesthetics research community
-- 🤗 Open source contributors everywhere!
-
-## 🎉 Enjoy Zenkai-Score! 🎉
-
-Remember: Aesthetic beauty is subjective, but with AI, we can PRETEND it's objective! 🤣
-
-May your images be beautiful and your scores be high! 📸✨
+The scoring is based on the LAION aesthetic predictor model, which was trained on millions of human aesthetic preference ratings.

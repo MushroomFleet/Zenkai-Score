@@ -4,7 +4,7 @@ import csv
 from pathlib import Path
 from typing import List, Tuple
 
-from zenkai_score.core import ZenkaiScore
+from .core import ZenkaiScore
 
 def save_to_csv(results: List[Tuple[str, float]], output_path: str):
     """Save scoring results to CSV file
@@ -40,7 +40,7 @@ def main():
     
     # Handle setup if requested
     if args.setup:
-        from zenkai_score.setup import setup_zenkai_score
+        from .setup_utils import setup_zenkai_score
         setup_zenkai_score(force_download=args.force)
         return
     
