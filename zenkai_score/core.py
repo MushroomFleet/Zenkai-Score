@@ -67,7 +67,7 @@ class ZenkaiScore:
             raise ValueError(f"Unsupported clip model: {clip_model}")
         
         try:
-            s = torch.load(path_to_model)
+            s = torch.load(path_to_model, weights_only=True)
             m.load_state_dict(s)
             m.eval()
         except Exception as e:
@@ -109,10 +109,23 @@ class ZenkaiScore:
                 image_features /= image_features.norm(dim=-1, keepdim=True)
                 # Get raw aesthetic score
                 raw_score = self.aesthetic_model(image_features).item()
-                # Normalize to 1-10 scale
-                normalized_score = min(max(raw_score + 5, 1.0), 10.0)
                 
-                return normalized_score
+                # Apply sigmoid transformation for better distribution across the 1-10 scale
+                # Unlike the simple offset and clipping used previously, which resulted in most scores
+                # clustering at 9-10, this approach produces a more balanced distribution
+                import math
+                
+                # Sigmoid parameters (tuned based on empirical testing):
+                # k: Controls the steepness of the sigmoid curve (lower = more gradual transitions)
+                # center: Raw score value that will map to 5.5 on the final scale
+                k = 0.3  
+                center = 4.0  # Calibrated based on observed raw scores
+                
+                # Apply sigmoid function for S-shaped distribution curve
+                scaled_score = k * (raw_score - center)
+                sigmoid_score = 1.0 + 9.0 * (1.0 / (1.0 + math.exp(-scaled_score)))
+                
+                return sigmoid_score
         
         except torch.cuda.OutOfMemoryError:
             print(f"CUDA out of memory when processing {image_path}. Try using CPU device instead.")

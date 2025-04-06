@@ -2,6 +2,8 @@
 
 A streamlined image aesthetic scoring system based on LAION's aesthetic model.
 
+> **Note:** Project structure has been cleaned up. Obsolete files moved to the `obsolete` directory.
+
 ## Overview
 
 Zenkai-Score is a tool that analyzes and rates images based on their aesthetic qualities. It uses a machine learning model built on OpenCLIP embeddings and the LAION aesthetic predictor to assign scores from 1 to 10 to each image.
@@ -43,7 +45,7 @@ Zenkai-Score is a tool that analyzes and rates images based on their aesthetic q
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/zenkai-score.git
+git clone https://github.com/MushroomFleet/Zenkai-Score
 cd Zenkai-Score
 
 # Create a virtual environment (optional but recommended)
